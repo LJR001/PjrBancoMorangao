@@ -10,18 +10,17 @@ namespace PjrBancoMorangao
     {
        // Pessoa pessoa;
         public double FaixaSalario{set;get;}
-
-        Pessoa pessoa = new Pessoa();
-
-        Endereco e1 = new Endereco();
+           
         
-
         public Cliente()
         {
         }
 
-        public void CadastrarCliente()
+        public Pessoa CadastrarCliente()
         {
+            Pessoa pessoa = new Pessoa();
+
+            Endereco e1 = new Endereco();
 
             pessoa.endereco = e1;
             Console.Clear();
@@ -55,38 +54,47 @@ namespace PjrBancoMorangao
             Console.Write(" Estado: ");
             pessoa.endereco.Estado = Console.ReadLine();    
 
-            Console.WriteLine("\n Dados Informados\n");
+            Console.WriteLine("\n Dados que foram informados são: \n");
             Console.WriteLine(pessoa.ToString());
+
+        
 
             Console.WriteLine("Pressione ENTER para continuar");
             Console.ReadKey();
-              
-            SolicitarAberturaConta();
-            return;
+            Console.Clear();
+
+            return pessoa;
+            // SolicitarAberturaConta();
+            // return;
         }
 
         public string SolicitarAberturaConta()
         {
-            char solicitar;
-            Console.WriteLine(" Deseja fazer uma solicitação de abertura de conta?\n Digite:" +
-                "\n S para Solicitar crição de conta\n N para não solicitar ");
-            solicitar= char.Parse(Console.ReadLine());
+            Agente_Bancario agnt = new Agente_Bancario();
+            Gerente grt = new Gerente();
+            string solicitar;
+            Console.WriteLine(" Deseja fzer solicitação de abertura de conta?\n");
+            Console.Write(" 1 - Sim, Desejo fazer a solicitação  \n 2 - Não desejo fazer a solicitação \n\n Digite a opção que deseja: ");
+            solicitar = Console.ReadLine();
 
-           switch(solicitar)
+            switch (solicitar)
             {
-                case 'S':
-                    Console.WriteLine("Para solicitar abertura de conta informe seu salario");
+                case "1":
+                    Console.Write("Para solicitar abertura de conta informe seu salario\n RS ");
                     FaixaSalario = double.Parse(Console.ReadLine());
-                    
+                    agnt.AvaliarTipoConta(FaixaSalario);
+                    grt.AutorizarConta(FaixaSalario);
+
                     break;
-                case 'N':
+                case "2":
                     Console.WriteLine("Você será levado ao menu");
                     break;
             }    
 
              
-            return ToString();
+            return solicitar;
         }
+        
     }
 
 

@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace PjrBancoMorangao
 {
-    internal class Funcionario:Pessoa
+    internal class Conta_Poupanca:Conta_CC
     {
-        public int NumRegistro { get; set; }
+        public string NUmero { get; set; }
 
-        public Funcionario()
+        public void ResgatarPoupança()
         {
-           
+
         }
+
+
     }
 }
