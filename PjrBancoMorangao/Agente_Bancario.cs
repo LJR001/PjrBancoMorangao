@@ -25,26 +25,29 @@ namespace PjrBancoMorangao
 
 
         }
-        public double AvaliarTipoConta(double salario)
+        public string AvaliarTipoConta(double salario)
         {
-           // string tipoConta;
+           string tipoConta;
             if(salario < 1200)
             {
-                Console.WriteLine("Sua conta será uma conta UNIVERSITÁRIA");
-               // tipoConta = "Universitaria";
+                tipoConta = "UNIVERSITARIA";
+                Console.WriteLine("Sua conta será uma conta "+tipoConta);
+                 
             }
             else if (salario < 6000)
             {
-                Console.WriteLine("Sua conta será uma conta NORMAL");
-              //  tipoConta = "Normal";
+                tipoConta = "NORMAL";
+                Console.WriteLine("Sua conta será uma conta " + tipoConta);
+                    
             }
             else 
             {
-                Console.WriteLine("Parabens!!! Sua conta será uma conta VIP");
-               // tipoConta = "VIP";
+                tipoConta = "VIP";
+                Console.WriteLine("Parabens!!! Sua conta será uma conta " +tipoConta);
+                    
             }
-            //tipoConta
-            return salario ;
+            
+            return tipoConta ;
         }
     }
 }

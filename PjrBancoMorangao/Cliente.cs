@@ -68,32 +68,52 @@ namespace PjrBancoMorangao
             // return;
         }
 
-        public string SolicitarAberturaConta()
+        public Conta_CC SolicitarAberturaConta()
         {
             Agente_Bancario agnt = new Agente_Bancario();
             Gerente grt = new Gerente();
-            string solicitar;
-            Console.WriteLine(" Deseja fzer solicitação de abertura de conta?\n");
-            Console.Write(" 1 - Sim, Desejo fazer a solicitação  \n 2 - Não desejo fazer a solicitação \n\n Digite a opção que deseja: ");
-            solicitar = Console.ReadLine();
-
-            switch (solicitar)
-            {
-                case "1":
-                    Console.Write("Para solicitar abertura de conta informe seu salario\n RS ");
+            Conta_CC cnt = new Conta_CC(); 
+            /*
+            bool aprovado;
+            string tipoConta;*/
+         
+            
+            
+            Console.WriteLine(" Fazendo solicitação de conta\n");
+                    
+                    Console.Write("Para solicitar abertura de conta informe seu salario\n RS: ");
                     FaixaSalario = double.Parse(Console.ReadLine());
-                    agnt.AvaliarTipoConta(FaixaSalario);
-                    grt.AutorizarConta(FaixaSalario);
+                   // tipoConta =  agnt.AvaliarTipoConta(FaixaSalario);
+                   
+                  //  int numConta = int.Parse(Console.ReadLine());
+                   
+                   
+                     // grt.AutorizarConta(FaixaSalario);
+                    cnt = grt.AutorizarConta(FaixaSalario);
 
-                    break;
-                case "2":
-                    Console.WriteLine("Você será levado ao menu");
-                    break;
-            }    
+                    cnt.TipoConta = agnt.AvaliarTipoConta(FaixaSalario);
+
+            /*       if (aprovado)
+                   {
+                       Conta_CC conta = new Conta_CC(numConta,tipoConta,numSenha,cheque);
+
+                       return conta;
+                   }
+                    else
+                    {
+                         Conta_CC conta = new Conta_CC(0, " ", 0, 0);
+                        return conta;
+                    }
+            */
+            return cnt;
+        }
+                    
+
+
+              
 
              
-            return solicitar;
-        }
+          
         
     }
 
