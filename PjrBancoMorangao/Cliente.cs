@@ -9,54 +9,56 @@ namespace PjrBancoMorangao
     internal class Cliente : Pessoa
     {
        // Pessoa pessoa;
-        public double FaixaSalario{set;get;}
+        public float FaixaSalario{set;get;}
 
         public Cliente()
         {
 
         }
 
-        public Cliente(double faixaSalario)
+        public Cliente(float faixaSalario)
         {
             FaixaSalario = faixaSalario;
           
         }
 
-        public Pessoa CadastrarCliente()
+        public Cliente CadastrarCliente()
         {
-            Pessoa pessoa = new Pessoa();
+            Cliente cliente = new Cliente();
 
             Endereco e1 = new Endereco();
-            pessoa.endereco = e1;
+            cliente.endereco = e1;
 
             Console.Clear();
             Console.WriteLine(" Insira abaixo os dados necessario para ser cadastrado\n" +
                 "\n DADOS PESSOAIS\n --------------");
            
             Console.Write(" Nome: ");
-            pessoa.Nome = Console.ReadLine();
+            cliente.Nome = Console.ReadLine();
             Console.Write(" CPF (XXX. XXX . XXX - XX): ");
-            pessoa.CPF = Console.ReadLine();
+            cliente.CPF = Console.ReadLine();
             Console.Write(" Email: ");
-            pessoa.Email = Console.ReadLine();
+            cliente.Email = Console.ReadLine();
             Console.Write(" Telefone (XX) X XXXX - XXXX : ");
-            pessoa.Telefone = Console.ReadLine();
+            cliente.Telefone = Console.ReadLine();
             Console.Write(" Data de nasciemnto XX/ XX/ XXXX: ");
-            pessoa.DataNasc = DateTime.Parse(Console.ReadLine());
+            cliente.DataNasc = DateTime.Parse(Console.ReadLine());
+            Console.Write("Salario mensal: R$");
+            cliente.FaixaSalario=float.Parse(Console.ReadLine());
         
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine(" DADOS DE ENDEREÇO\n ----------------");
             Console.Write(" Logradouro: ");
-            pessoa.endereco.Rua = Console.ReadLine();
+            cliente.endereco.Rua = Console.ReadLine();
             Console.Write(" Numero: ");
-            pessoa.endereco.Numero = Console.ReadLine();
+            cliente.endereco.Numero = Console.ReadLine();
             Console.Write(" Bairro: ");
-            pessoa.endereco.Bairro = Console.ReadLine();
+            cliente.endereco.Bairro = Console.ReadLine();
             Console.Write(" Cidade: ");
-            pessoa.endereco.Cidade = Console.ReadLine();
+            cliente.endereco.Cidade = Console.ReadLine();
             Console.Write(" Estado: ");
-            pessoa.endereco.Estado = Console.ReadLine();
+            cliente.endereco.Estado = Console.ReadLine();
 
 
             Console.WriteLine("\nCadastro finalizado!\n\nPressione ENTER para continuar");
@@ -64,13 +66,13 @@ namespace PjrBancoMorangao
             Console.Clear();
             
             Console.WriteLine(" Os dados que foram informados são: \n");
-            Console.WriteLine(pessoa.ToString());
+            Console.WriteLine(cliente.ToString());
                    
             Console.WriteLine("\nPressione ENTER para continuar");
             Console.ReadKey();
             Console.Clear();
 
-            return pessoa;
+            return cliente;
           
         }
 
@@ -79,16 +81,16 @@ namespace PjrBancoMorangao
             Agente_Bancario agnt = new Agente_Bancario();
             Gerente grt = new Gerente();
             Conta_CC cnt = new Conta_CC(); 
-                  
-             Console.Write(" Seus dados foram guardados com sucessos\n\n Agora informe o seu salario ser feita a solicitação de abertura de conta\n RS: ");
-             FaixaSalario = float.Parse(Console.ReadLine());
-            Console.Clear();
 
+            
+                  
+             Console.Write(" Seus dados foram guardados com sucessos\n\n Agora sera feita a solicitação de abertura de conta\n RS: ");
+             
+            Console.Clear();
 
             Console.WriteLine(" Fazendo solicitação de conta . . \n");
             Console.WriteLine();
-
-            
+                        
             cnt.verificacao = grt.AutorizarConta(FaixaSalario);
 
 
@@ -117,12 +119,18 @@ namespace PjrBancoMorangao
             }
 
         }
-                 
-
+           
         public int Random (int min, int max)
         {
             Random r = new Random();
             return r.Next(100,999);
+        }
+
+        public override string ToString()
+        {
+            return " Dados Pessoais\n Nome: " + Nome + "\n" +
+                " CPF: " + CPF + "\n Email: " + Email + "\n" +
+                " Telefone: " + Telefone + "\n Data de Nasciemnto: " + DataNasc + "\n" + " Salario"  + FaixaSalario + endereco ;
         }
             
     }

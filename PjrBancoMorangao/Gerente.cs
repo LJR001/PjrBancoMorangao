@@ -20,14 +20,14 @@ namespace PjrBancoMorangao
             if (salario < 650)
             {
                 Console.WriteLine("Sua renda não atingiu ao teto minimo");
-                Console.WriteLine("A criação da sua conta foi autorizada\n Bem-vindo ao clube");
+             
                 
                 return false;
             }
             else if (salario > 20000)
             {
                 Console.WriteLine("Sua renda ultrapassou o teto maximo");
-                Console.WriteLine("A criação da sua conta foi autorizada\n Bem-vindo ao clube");
+               
                 return false;
 
             }

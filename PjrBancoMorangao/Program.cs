@@ -1,15 +1,31 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PjrBancoMorangao
 {
     internal class Program
     {
+        static void Login(List<Conta_CC> conta)
+        {
+           // do
+           // {
+               // bool validado = false;
+                Console.Write(" Digite o seu CPF para acessar sua conta:");
+                string cpf = Console.ReadLine();
+                foreach (Conta_CC cc in conta)
+                {
+                    if (cc.Cliente.CPF == cpf)
+                    {
+                        MenuConta(cc);
+                    }
 
+                }
+                //return validado;
+           // } while (cpf != null);
+     }
         static void MenuConta(Conta_CC conta) 
         {
-           
-            Console.ReadKey();
-            Console.WriteLine("Para acessar sua conta faça o login abaixo:\n\n Numero conta: \n\n Senha: ");
+            
            
             Console.ReadKey();
             Console.Clear();
@@ -95,17 +111,22 @@ namespace PjrBancoMorangao
             MenuCliente();
         }
 
+
         static void MenuCliente()
         {
+            
             int opc;
             
             Cliente cliente1 = new Cliente();
-            Pessoa pessoa = new Pessoa();
-            Conta_CC conta1 = new Conta_CC();
+            //Pessoa pessoa = new Pessoa();
+            Conta_CC conta1 = new  Conta_CC();
+            List<Conta_CC> contList = new List<Conta_CC>();
             Agente_Bancario agnt = new Agente_Bancario();
+
             Console.WriteLine(" Escolha um das opções abaixo:\n");
             Console.Write(" 1 - Ja sou cliente \n 2 - Ainda não sou cliente \n 0 - Finalizar o programa\n\n Digite a opção que deseja: ");
             opc = int.Parse(Console.ReadLine());
+
 
             switch (opc)
             {
@@ -115,23 +136,41 @@ namespace PjrBancoMorangao
                     Console.WriteLine("Você selecionou 'Ja sou cliente'\n acessando conta conta...");
                     Console.WriteLine();
                     Console.Clear();
-                    MenuConta(conta1);
+                    Login(contList);
 
                     break;
-                case 2:
-                    pessoa = cliente1.CadastrarCliente();
-                    conta1 = cliente1.SolicitarAberturaConta();
-                    
 
-                    MenuConta(conta1);
+
+
+                case 2:
+                    cliente1 = cliente1.CadastrarCliente();
+                    conta1 = cliente1.SolicitarAberturaConta();
+                    if(conta1 == null)
+                    {
+
+                        Console.WriteLine(" Sua conta não foi aprovada");
+                        break;
+                    }
+                    else
+                    {
+                        conta1.Cliente = cliente1;
+
+                        contList.Add(conta1);
+                       
+                        Console.WriteLine(conta1.Cliente.Nome);
+                    }
+
+
+                    Login(contList);
+
+                  //  MenuConta(conta1);
 
                     break;
             }
 
-
-            return;
+            
+           
         }
-
         static void Main(string[] args)
         {
             Agencia agencia = new Agencia();

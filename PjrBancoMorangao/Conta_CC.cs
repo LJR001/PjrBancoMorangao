@@ -10,20 +10,21 @@ namespace PjrBancoMorangao
     {
         public int NumConta { get; set; }
         public string TipoConta { get; set; }
-        public int Senha { get; set; }
+        public Cliente Cliente { get; set; }
         public double ChequeEspecial { get; set; }
         public float SaldoConta { get; set; }
         public bool verificacao { get; set; }
+                
         public Conta_CC()
         {
             this.verificacao = false;
         }
 
-        public Conta_CC(int numConta,string tipoConta, int senha, double chequeEspecial)
+        public Conta_CC(int numConta,string tipoConta, Cliente cliente, double chequeEspecial)
         {
             NumConta = numConta;
             TipoConta = tipoConta;
-            Senha = senha;
+            Cliente = cliente;
             ChequeEspecial = chequeEspecial;
         }
 
@@ -85,6 +86,12 @@ namespace PjrBancoMorangao
         public void AcessarCartaoCredito()
         {
             Console.WriteLine(" Essa opção está sendo desenvolvida");
+        }
+
+        public override string ToString()
+        {
+            return Cliente + "\n\n Numero conta: "+ NumConta+"\n Tipo conta: "+TipoConta+"\n Cheque especial: "+ChequeEspecial+"\n" +
+                "Saldo da conta: "+SaldoConta;
         }
     }
 }

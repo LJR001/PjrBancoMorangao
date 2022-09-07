@@ -19,6 +19,7 @@ namespace PjrBancoMorangao
         {
            
         }
+
         public override string ToString()
         {
             return "\n Rua: "+Rua+"\n" +
