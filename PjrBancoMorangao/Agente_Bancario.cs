@@ -30,20 +30,20 @@ namespace PjrBancoMorangao
            string tipoConta;
             if(salario < 1200)
             {
-                tipoConta = "UNIVERSITARIA";
-                Console.WriteLine("Sua conta será uma conta "+tipoConta);
+                tipoConta = "univrsitaria";
+                Console.WriteLine(" Tipo da conta: "+tipoConta);
                  
             }
             else if (salario < 6000)
             {
-                tipoConta = "NORMAL";
-                Console.WriteLine("Sua conta será uma conta " + tipoConta);
+                tipoConta = "normal";
+                Console.WriteLine(" Tipo da conta: " + tipoConta);
                     
             }
             else 
             {
                 tipoConta = "VIP";
-                Console.WriteLine("Parabens!!! Sua conta será uma conta " +tipoConta);
+                Console.WriteLine(" Tipo da conta: " + tipoConta);
                     
             }
             

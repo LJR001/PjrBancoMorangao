@@ -5,13 +5,12 @@ namespace PjrBancoMorangao
     internal class Program
     {
 
-        static void MenuConta() 
+        static void MenuConta(Conta_CC conta) 
         {
-            
-            Conta_CC conta = new Conta_CC();
+           
+            Console.ReadKey();
             Console.WriteLine("Para acessar sua conta faça o login abaixo:\n\n Numero conta: \n\n Senha: ");
-            // login, senha;
-            // if()
+           
             Console.ReadKey();
             Console.Clear();
             int opc;
@@ -36,19 +35,32 @@ namespace PjrBancoMorangao
                 {
                     case 1:
 
-                        conta.ConsultarSaldo();
+                        Console.Clear();
+                        conta.ConsultarSaldo(conta.SaldoConta);
+                        
                         break;
                     case 2:
-                        Console.WriteLine("Digite o quanto deseja depositar");
-                        conta.Depositar();
+                        Console.Clear();
+                        Console.WriteLine("Digite o valor que deseja depositar");
+                        float deposito = float.Parse(Console.ReadLine());
+                        conta.SaldoConta = conta.Depositar(conta.SaldoConta, deposito);
+                        
                         break;
                     case 3:
-
-                        conta.Sacar();
+                        Console.Clear();
+                        Console.WriteLine(" Digite o valor que deseja sacar: ");
+                        float saque = float.Parse(Console.ReadLine());
+                        conta.SaldoConta = conta.Sacar(conta.SaldoConta, saque);
+                       
                         break;
                     case 4:
-
-                        conta.TransferirValor();
+                        
+                        Console.WriteLine(" Digite o valor que deseja transferir");
+                        float transfer = float.Parse(Console.ReadLine());
+                        Console.WriteLine("Digite o nomero da conta para que sera transferido o valor: ");
+                        int numConta = int.Parse(Console.ReadLine());
+                        conta.SaldoConta = conta.TransferirValor(conta.SaldoConta, transfer, numConta);
+                          
                         break;
                     case 5:
                         
@@ -60,15 +72,21 @@ namespace PjrBancoMorangao
                         break;
                     case 7:
 
-                        conta.LimiteChequeEspecial();
+                        conta.ConsultarChequeEspecial();
                         break;
                     case 8:
 
                         conta.AcessarCartaoCredito();
                         break;
                     case 9:
-                        conta.RealizarPagamento();
+
+                        Console.WriteLine(" Digite o codigos de barra da conta a ser paga:");
+                        int codBarra = int.Parse(Console.ReadLine());
+                        Console.WriteLine(" Digite o valor da conta a pagar: ");
+                        float pagar = float.Parse(Console.ReadLine());
+                        conta.RealizarPagamento(conta.SaldoConta, codBarra, pagar); 
                         break;
+
                     case 0:
                         Console.WriteLine(" Volta a menu anterior");
                         break;
@@ -97,17 +115,16 @@ namespace PjrBancoMorangao
                     Console.WriteLine("Você selecionou 'Ja sou cliente'\n acessando conta conta...");
                     Console.WriteLine();
                     Console.Clear();
-                    MenuConta();
+                    MenuConta(conta1);
 
                     break;
                 case 2:
                     pessoa = cliente1.CadastrarCliente();
-                    conta1 = 
+                    conta1 = cliente1.SolicitarAberturaConta();
                     
-                  
 
-                    MenuConta();
-                  
+                    MenuConta(conta1);
+
                     break;
             }
 
@@ -117,29 +134,13 @@ namespace PjrBancoMorangao
 
         static void Main(string[] args)
         {
-            
-            Console.Write(" Digite em qual agencia você esta:\n\n 1 - Agencia Morangão Taquaritinga\n " +
-                "2 - Agencia Morangão Araraquara" +
-                "\n\n Digite a opção que deseja: ");
-            int opc = int.Parse(Console.ReadLine());
+            Agencia agencia = new Agencia();
+            agencia.TrocarAgencia();
 
-            switch (opc)
-            {
-                case 1:
-                    Console.Clear();
-                    Console.WriteLine(" Bem-vindo a nossa agencia de Taquaritinga do Banco Morangão");
-                    MenuCliente();
-                    break;
-                case 2:
-                    Console.Clear();
-                    Console.WriteLine(" Bem-vindo a nossa agencia de Taquaritinga do Banco Morangão");
-                    MenuCliente();
-                    break;
-            }
-                
+            MenuCliente();
 
-            
-             
+
+
         }
     }
 }
