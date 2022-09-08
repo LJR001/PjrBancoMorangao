@@ -8,64 +8,72 @@ namespace PjrBancoMorangao
 {
     internal class Cliente : Pessoa
     {
-       // Pessoa pessoa;
-        public double FaixaSalario{set;get;}
-           
-        
+       
+        public float FaixaSalario{set;get;}
+
         public Cliente()
         {
+
         }
 
-        public Pessoa CadastrarCliente()
+        public Cliente(float faixaSalario)
         {
-            Pessoa pessoa = new Pessoa();
+            FaixaSalario = faixaSalario;
+          
+        }
+
+        public Cliente CadastrarCliente()
+        {
+            Cliente cliente = new Cliente();
 
             Endereco e1 = new Endereco();
+            cliente.endereco = e1;
 
-            pessoa.endereco = e1;
             Console.Clear();
-            Console.WriteLine(" Insira abaixo os dados necessario para ser cadastrado\n");
-
+            Console.WriteLine(" Insira abaixo os dados necessario para ser cadastrado\n" +
+                "\n DADOS PESSOAIS\n --------------");
+           
             Console.Write(" Nome: ");
-            pessoa.Nome = Console.ReadLine();
-            Console.Write(" CPF: ");
-            pessoa.CPF = Console.ReadLine();
+            cliente.Nome = Console.ReadLine();
+            Console.Write(" CPF : ");
+            cliente.CPF = Console.ReadLine();
             Console.Write(" Email: ");
-            pessoa.Email = Console.ReadLine();
-            Console.Write(" Telefone: ");
-            pessoa.Telefone = long.Parse(Console.ReadLine());
-            Console.Write(" Data de nasciemnto: ");
-            pessoa.DataNasc = DateTime.Parse(Console.ReadLine());
-                      
-           // Console.WriteLine("\n\n Tecle ENTER proseguir para o cadastro de endereço");
-            //Console.ReadKey();
-           // Console.Clear();
-
-            Console.WriteLine();
-
-            Console.Write(" Logradouro: ");
-            pessoa.endereco.Rua = Console.ReadLine();
-            Console.Write(" Numero: ");
-            pessoa.endereco.Numero = Console.ReadLine();
-            Console.Write(" Bairro: ");
-            pessoa.endereco.Bairro = Console.ReadLine();
-            Console.Write(" Cidade: ");
-            pessoa.endereco.Cidade = Console.ReadLine();
-            Console.Write(" Estado: ");
-            pessoa.endereco.Estado = Console.ReadLine();    
-
-            Console.WriteLine("\n Dados que foram informados são: \n");
-            Console.WriteLine(pessoa.ToString());
-
+            cliente.Email = Console.ReadLine();
+            Console.Write(" Telefone : ");
+            cliente.Telefone = Console.ReadLine();
+            Console.Write(" Data de nasciemnto __/ __/ ____: ");
+            cliente.DataNasc = DateTime.Parse(Console.ReadLine());
+            Console.Write(" Salario mensal: R$");
+            cliente.FaixaSalario=float.Parse(Console.ReadLine());
         
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine(" DADOS DE ENDEREÇO\n ----------------");
+            Console.Write(" Logradouro: ");
+            cliente.endereco.Rua = Console.ReadLine();
+            Console.Write(" Numero: ");
+            cliente.endereco.Numero = Console.ReadLine();
+            Console.Write(" Bairro: ");
+            cliente.endereco.Bairro = Console.ReadLine();
+            Console.Write(" Cidade: ");
+            cliente.endereco.Cidade = Console.ReadLine();
+            Console.Write(" Estado: ");
+            cliente.endereco.Estado = Console.ReadLine();
 
-            Console.WriteLine("Pressione ENTER para continuar");
+
+            Console.WriteLine("\nCadastro finalizado!\n\nPressione ENTER para continuar");
+            Console.ReadKey();
+            Console.Clear();
+            
+            Console.WriteLine(" Os dados que foram informados são: \n");
+            Console.WriteLine(cliente.ToString());
+                   
+            Console.WriteLine("\nPressione ENTER para continuar");
             Console.ReadKey();
             Console.Clear();
 
-            return pessoa;
-            // SolicitarAberturaConta();
-            // return;
+            return cliente;
+          
         }
 
         public Conta_CC SolicitarAberturaConta()
@@ -73,50 +81,64 @@ namespace PjrBancoMorangao
             Agente_Bancario agnt = new Agente_Bancario();
             Gerente grt = new Gerente();
             Conta_CC cnt = new Conta_CC(); 
-            /*
-            bool aprovado;
-            string tipoConta;*/
-         
+
             
-            
-            Console.WriteLine(" Fazendo solicitação de conta\n");
-                    
-                    Console.Write("Para solicitar abertura de conta informe seu salario\n RS: ");
-                    FaixaSalario = double.Parse(Console.ReadLine());
-                   // tipoConta =  agnt.AvaliarTipoConta(FaixaSalario);
-                   
-                  //  int numConta = int.Parse(Console.ReadLine());
-                   
-                   
-                     // grt.AutorizarConta(FaixaSalario);
-                    cnt = grt.AutorizarConta(FaixaSalario);
-
-                    cnt.TipoConta = agnt.AvaliarTipoConta(FaixaSalario);
-
-            /*       if (aprovado)
-                   {
-                       Conta_CC conta = new Conta_CC(numConta,tipoConta,numSenha,cheque);
-
-                       return conta;
-                   }
-                    else
-                    {
-                         Conta_CC conta = new Conta_CC(0, " ", 0, 0);
-                        return conta;
-                    }
-            */
-            return cnt;
-        }
-                    
-
-
-              
-
+                  
+             Console.Write(" Seus dados foram guardados com sucessos\n\n Agora sera feita a solicitação de abertura de conta\n RS: ");
              
-          
-        
+            Console.Clear();
+
+            Console.WriteLine(" Fazendo solicitação de conta . . \n");
+            Console.WriteLine();
+                        
+            cnt.verificacao = grt.AutorizarConta(FaixaSalario);
+
+
+            if (cnt.verificacao)
+            {
+                
+                cnt.ChequeEspecial = 0;
+
+                Console.WriteLine("Sua conta foi autorizada, segue abaixo as informação de sua conta\n");
+
+                int id = Random(100,999);
+                Console.WriteLine(" Numero conta: "+id);
+                cnt.NumConta = id;
+                cnt.TipoConta = agnt.AvaliarTipoConta(FaixaSalario);
+                Console.WriteLine(" Limite do cheque especial: R$" + (FaixaSalario * 0.7));
+                cnt.ChequeEspecial = (FaixaSalario * 0.7);
+                Console.WriteLine(" Saldo da conta: R$ 0,00");
+                cnt.SaldoConta = 0;
+                Console.WriteLine("\n\n !!! ATENÇÃO !!! \n Guarde o numero da conta ele será necessario para você acessa-la.");
+
+                Console.WriteLine("\n\nPressione ENTER para continuar");
+                Console.ReadKey();
+                Console.Clear();
+                return cnt;
+            }
+            else
+            {
+                Console.WriteLine("Conta não aprovado");
+                return null;
+            }
+
+        }
+
+
+           
+        public int Random (int min, int max)
+        {
+            Random r = new Random();
+            return r.Next(100,999);
+        }
+
+        public override string ToString()
+        {
+            return " DADOS PESSOAIS\n  Nome: " + Nome + "\n" +
+                "  CPF: " + CPF + "\n  Email: " + Email + "\n" +
+                "  Telefone: " + Telefone + "\n  Data de Nasciemnto: " + DataNasc + "\n" + "  Salario: "  + FaixaSalario+"\n" + endereco ;
+        }
+            
     }
 
-
-    
 }

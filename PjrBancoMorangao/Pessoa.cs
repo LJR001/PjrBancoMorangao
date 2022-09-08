@@ -11,7 +11,7 @@ namespace PjrBancoMorangao
         public string Nome { set; get; }
         public string CPF { set; get; }
         public string Email { set; get; }
-        public long Telefone { set; get; }
+        public string Telefone { set; get; }
         public DateTime DataNasc { set; get; }
 
         public Endereco endereco { get; set; }
@@ -22,7 +22,7 @@ namespace PjrBancoMorangao
         {
         }
 
-        public Pessoa(string nome, string cpf, string email, long telefone, DateTime dataNasc,Endereco endrco)         {
+        public Pessoa(string nome, string cpf, string email, string telefone, DateTime dataNasc,Endereco endrco)         {
             this.Nome = nome;
             this.CPF = cpf;
             this.Email = email;
@@ -30,14 +30,8 @@ namespace PjrBancoMorangao
             this.DataNasc = dataNasc;
             this.endereco = endrco;
 
-            //Endereco endereco = new Endereco(rua, numero, cidade, bairro);
            
-        }
-        public override string ToString()
-        {
-            return " Dados Pessoais\n Nome: "+Nome+"\n" +
-                " CPF: "+CPF+"\n Email: "+Email+"\n" +
-                " Telefone: "+Telefone+"\n Data de Nasciemnto: "+DataNasc+"\n" +endereco;
+           
         }
     }
 }

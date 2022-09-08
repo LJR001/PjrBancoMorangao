@@ -19,10 +19,11 @@ namespace PjrBancoMorangao
         {
            
         }
+
         public override string ToString()
         {
-            return "\n Rua: "+Rua+"\n" +
-                " Numero: "+Numero+"\n Bairro: "+ Bairro +" Cidade: "+Cidade+"\n Estado: "+Estado;
+            return "\nDADOS DE ENDEREÇO\n  Rua: "+Rua+"\n" +
+                "  Numero: "+Numero+"\n  Bairro: "+ Bairro +"  Cidade: "+Cidade+"\n  Estado: "+Estado;
         }
     }
     
