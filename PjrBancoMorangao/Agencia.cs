@@ -11,26 +11,56 @@ namespace PjrBancoMorangao
         public int NumAgencia { get; set; }
         public Endereco endereco { get; set; }
 
-        public void TrocarAgencia()
+        public Agencia TrocarAgencia()
         {
-            Console.Write(" Digite em qual agencia você esta:\n\n 1 - Agencia Morangão Taquaritinga\n " +
-               "2 - Agencia Morangão Araraquara" +
-               "\n\n Digite a opção que deseja: ");
-            int opc = int.Parse(Console.ReadLine());
+            Agencia agencia = new Agencia();   
+            Endereco endereco = new Endereco(); 
+            agencia.endereco = endereco;
 
-            switch (opc)
+            Console.Write(" Digite em qual agencia você esta:\n\n 159 - Agencia Morangão Taquaritinga\n " +
+                   "148 - Agencia Morangão Araraquara\n\n");
+            int opc = 0;
+            do
             {
-                case 1:
-                    Console.Clear();
-                    Console.WriteLine(" Bem-vindo a nossa agencia de Taquaritinga do Banco Morangão \n");
-                    
-                    break;
-                case 2:
-                    Console.Clear();
-                    Console.WriteLine(" Bem-vindo a nossa agencia de Taquaritinga do Banco Morangão \n");
-                   
-                    break;
-            }
+                                
+                Console.Write(" Digite a opção que deseja: ");
+                try
+                {
+                    opc = int.Parse(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                   // Console.WriteLine(" Informe apenas numeros! ");
+                    //throw;
+                }
+               
+
+                    switch (opc)
+                    {
+                        case 159:
+                            Console.Clear();
+                            Console.WriteLine(" Bem-vindo a nossa agencia de Taquaritinga do Banco Morangão \n");
+                            agencia.NumAgencia = 159;
+                            agencia.endereco.Cidade = "Taquaritinga";
+
+                            break;
+                        case 148:
+                            Console.Clear();
+                            Console.WriteLine(" Bem-vindo a nossa agencia de Taquaritinga do Banco Morangão \n");
+                            agencia.NumAgencia = 148;
+                            agencia.endereco.Cidade = "Araraquara";
+
+                            break;
+                        default:
+                            Console.Write("Você informou uma opção inexistente!\n ");
+                            break;
+
+                    }
+                
+              
+               
+            }while ((opc != 159) && (opc !=148 ));
+            return agencia;
         }
     }
 }

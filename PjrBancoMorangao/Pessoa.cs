@@ -30,14 +30,8 @@ namespace PjrBancoMorangao
             this.DataNasc = dataNasc;
             this.endereco = endrco;
 
-            //Endereco endereco = new Endereco(rua, numero, cidade, bairro);
            
-        }/*
-        public override string ToString()
-        {
-            return " Dados Pessoais\n Nome: "+Nome+"\n" +
-                " CPF: "+CPF+"\n Email: "+Email+"\n" +
-                " Telefone: "+Telefone+"\n Data de Nasciemnto: "+DataNasc+"\n" +endereco;
-        }*/
+           
+        }
     }
 }

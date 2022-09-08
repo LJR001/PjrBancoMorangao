@@ -13,6 +13,9 @@ namespace PjrBancoMorangao
         public Cliente Cliente { get; set; }
         public double ChequeEspecial { get; set; }
         public float SaldoConta { get; set; }
+       
+        
+        
         public bool verificacao { get; set; }
                 
         public Conta_CC()
@@ -40,10 +43,12 @@ namespace PjrBancoMorangao
         }
         public float TransferirValor(float saldo, float transfer, int num)
         {
+            Console.WriteLine(" Essa opção está sendo desenvolvida");
+            /*
             float resultado = saldo - transfer;
             Console.WriteLine("O valor: " + transfer + " foi transferido para conta " + num);
             return resultado;
-           
+           */
         }
         public void ConsultarExtrato()
         {
@@ -69,7 +74,7 @@ namespace PjrBancoMorangao
         public float Depositar(float saldo, float deposito)
         {
             float resultado = saldo + deposito;
-
+            
             return resultado;
         }
         public void ConsultarSaldo(float Consultar)
@@ -90,8 +95,8 @@ namespace PjrBancoMorangao
 
         public override string ToString()
         {
-            return Cliente + "\n\n Numero conta: "+ NumConta+"\n Tipo conta: "+TipoConta+"\n Cheque especial: "+ChequeEspecial+"\n" +
-                "Saldo da conta: "+SaldoConta;
+            return Cliente + "\n\n DADOS DA CONTA\n  Numero conta: "+ NumConta+"\n  Tipo conta: "+TipoConta+"\n  Cheque especial: "+ChequeEspecial+"\n" +
+                "  Saldo da conta: "+SaldoConta;
         }
     }
 }

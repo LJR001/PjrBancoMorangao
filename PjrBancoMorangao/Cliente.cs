@@ -8,7 +8,7 @@ namespace PjrBancoMorangao
 {
     internal class Cliente : Pessoa
     {
-       // Pessoa pessoa;
+       
         public float FaixaSalario{set;get;}
 
         public Cliente()
@@ -35,15 +35,15 @@ namespace PjrBancoMorangao
            
             Console.Write(" Nome: ");
             cliente.Nome = Console.ReadLine();
-            Console.Write(" CPF (XXX. XXX . XXX - XX): ");
+            Console.Write(" CPF : ");
             cliente.CPF = Console.ReadLine();
             Console.Write(" Email: ");
             cliente.Email = Console.ReadLine();
-            Console.Write(" Telefone (XX) X XXXX - XXXX : ");
+            Console.Write(" Telefone : ");
             cliente.Telefone = Console.ReadLine();
-            Console.Write(" Data de nasciemnto XX/ XX/ XXXX: ");
+            Console.Write(" Data de nasciemnto __/ __/ ____: ");
             cliente.DataNasc = DateTime.Parse(Console.ReadLine());
-            Console.Write("Salario mensal: R$");
+            Console.Write(" Salario mensal: R$");
             cliente.FaixaSalario=float.Parse(Console.ReadLine());
         
             Console.WriteLine();
@@ -109,7 +109,11 @@ namespace PjrBancoMorangao
                 cnt.ChequeEspecial = (FaixaSalario * 0.7);
                 Console.WriteLine(" Saldo da conta: R$ 0,00");
                 cnt.SaldoConta = 0;
+                Console.WriteLine("\n\n !!! ATENÇÃO !!! \n Guarde o numero da conta ele será necessario para você acessa-la.");
 
+                Console.WriteLine("\n\nPressione ENTER para continuar");
+                Console.ReadKey();
+                Console.Clear();
                 return cnt;
             }
             else
@@ -119,6 +123,8 @@ namespace PjrBancoMorangao
             }
 
         }
+
+
            
         public int Random (int min, int max)
         {
@@ -128,9 +134,9 @@ namespace PjrBancoMorangao
 
         public override string ToString()
         {
-            return " Dados Pessoais\n Nome: " + Nome + "\n" +
-                " CPF: " + CPF + "\n Email: " + Email + "\n" +
-                " Telefone: " + Telefone + "\n Data de Nasciemnto: " + DataNasc + "\n" + " Salario"  + FaixaSalario + endereco ;
+            return " DADOS PESSOAIS\n  Nome: " + Nome + "\n" +
+                "  CPF: " + CPF + "\n  Email: " + Email + "\n" +
+                "  Telefone: " + Telefone + "\n  Data de Nasciemnto: " + DataNasc + "\n" + "  Salario: "  + FaixaSalario+"\n" + endereco ;
         }
             
     }
